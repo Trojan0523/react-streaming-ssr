@@ -1,0 +1,78 @@
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 200px;
+}
+
+.spinner-circle {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(0, 102, 204, 0.2);
+  border-radius: 50%;
+  border-top-color: #0066cc;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 15px;
+}
+
+.spinner-text {
+  color: #666;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  animation: fadeInOut 1.5s ease-in-out infinite;
+}
+
+.spinner-subtext {
+  color: #888;
+  font-size: 14px;
+  text-align: center;
+  max-width: 250px;
+}
+
+/* Add a countdown animation */
+.spinner-container::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: #eee;
+  margin-top: 20px;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.spinner-container::after {
+  position: relative;
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
