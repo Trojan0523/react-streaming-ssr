@@ -6,7 +6,6 @@ import { Transform } from 'node:stream'
 const isProduction = process.env.NODE_ENV === 'production'
 const port = process.env.PORT || 5173
 const base = process.env.BASE || '/'
-const ABORT_DELAY = 60000  // Increased to 60 seconds to ensure Suspense has plenty of time to resolve
 
 // Cached production assets
 const templateHtml = isProduction
@@ -97,7 +96,7 @@ app.use('*all', async (req, res) => {
 
     setTimeout(() => {
       abort()
-    }, ABORT_DELAY)
+    }, 0)
   } catch (e) {
     vite?.ssrFixStacktrace(e)
     console.log(e.stack)
