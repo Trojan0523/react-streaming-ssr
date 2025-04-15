@@ -24,7 +24,7 @@ function fetchComments() {
           { id: 4, author: 'Bob Williams', text: 'That 5-second wait really shows how Suspense keeps the rest of the UI responsive!' }
         ];
         resolve();
-      }, 5000); // Increased to 5 seconds
+      }, 1000); // Increased to 5 seconds
     });
   }
   
@@ -37,13 +37,13 @@ const Comments: React.FC = () => {
   fetchComments();
   
   return (
-    <section>
-      <h2>Comments</h2>
-      <div className="comments-list">
+    <section className="bg-gray-50 p-5 rounded-lg shadow-sm" style={{ gridArea: 'comments' }}>
+      <h2 className="text-lg font-bold text-gray-800">Comments</h2>
+      <div className="mt-4">
         {comments!.map((comment) => (
-          <div key={comment.id} className="comment">
-            <h4>{comment.author}</h4>
-            <p>{comment.text}</p>
+          <div key={comment.id} className="bg-white p-4 mb-4 rounded-lg shadow-sm">
+            <h4 className="m-0 mb-1 text-gray-800 font-bold">{comment.author}</h4>
+            <p className="m-0 text-gray-600">{comment.text}</p>
           </div>
         ))}
       </div>

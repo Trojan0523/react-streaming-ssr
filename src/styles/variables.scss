@@ -1,0 +1,27 @@
+// Global SCSS variables
+// These variables will be available in all SCSS files
+
+// Colors
+$primary-color: #0066cc;
+$secondary-color: #e6f7ff;
+$text-color: #333;
+$light-text-color: #555;
+$background-color: #f9f9f9;
+$white: #ffffff;
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2.5rem;
+
+// Border radius
+$border-radius-sm: 0.25rem;
+$border-radius-md: 0.5rem;
+$border-radius-lg: 0.75rem;
+
+// Box shadows
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.1); 

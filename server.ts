@@ -1,6 +1,29 @@
 import fs from 'node:fs/promises'
-import express from 'express'
+import express, { Request, Response } from 'express'
 import { Transform } from 'node:stream'
+import type { ViteDevServer } from 'vite'
+import type { RequestHandler } from 'express'
+
+// For missing module declaration
+// This is needed to fix TypeScript warnings about missing module declarations
+// @ts-ignore
+// Define the render interface
+interface RenderResult {
+  pipe: (stream: Transform) => void;
+  abort: () => void;
+}
+
+interface ServerRenderer {
+  render: (
+    url: string,
+    options: {
+      onShellError: () => void;
+      onShellReady: () => void;
+      onAllReady: () => void;
+      onError: (error: Error) => void;
+    }
+  ) => RenderResult;
+}
 
 // Constants
 const isProduction = process.env.NODE_ENV === 'production'
@@ -16,8 +39,7 @@ const templateHtml = isProduction
 const app = express()
 
 // Add Vite or respective production middlewares
-/** @type {import('vite').ViteDevServer | undefined} */
-let vite
+let vite: ViteDevServer | undefined
 if (!isProduction) {
   const { createServer } = await import('vite')
   vite = await createServer({
@@ -27,29 +49,30 @@ if (!isProduction) {
   })
   app.use(vite.middlewares)
 } else {
-  const compression = (await import('compression')).default
-  const sirv = (await import('sirv')).default
-  app.use(compression())
-  app.use(base, sirv('./dist/client', { extensions: [] }))
+  const { default: compression } = await import('compression')
+  const { default: sirv } = await import('sirv')
+  app.use(compression() as RequestHandler)
+  app.use(base, sirv('./dist/client', { extensions: [] }) as RequestHandler)
 }
 
 // Serve HTML
-app.use('*all', async (req, res) => {
+app.use('/', async (req: Request, res: Response) => {
   try {
     const url = req.originalUrl.replace(base, '')
 
-    /** @type {string} */
-    let template
-    /** @type {import('./src/entry-server.ts').render} */
-    let render
+    let template: string
+    let render: ServerRenderer['render']
     if (!isProduction) {
       // Always read fresh template in development
       template = await fs.readFile('./index.html', 'utf-8')
-      template = await vite.transformIndexHtml(url, template)
-      render = (await vite.ssrLoadModule('/src/entry-server.tsx')).render
+      template = await vite!.transformIndexHtml(url, template)
+      const serverModule = await vite!.ssrLoadModule('/src/entry-server.tsx') as ServerRenderer
+      render = serverModule.render
     } else {
       template = templateHtml
-      render = (await import('./dist/server/entry-server.js')).render
+      // Using a type assertion to help TypeScript understand this import
+      const serverModule = await import('./dist/server/entry-server.js') as unknown as ServerRenderer
+      render = serverModule.render
     }
 
     let didError = false
@@ -88,7 +111,7 @@ app.use('*all', async (req, res) => {
         // Called when all Suspense boundaries are resolved
         console.log('All content ready - complete streaming...')
       },
-      onError(error) {
+      onError(error: Error) {
         didError = true
         console.error('Error during rendering:', error)
       },
@@ -97,7 +120,7 @@ app.use('*all', async (req, res) => {
     setTimeout(() => {
       abort()
     }, 0)
-  } catch (e) {
+  } catch (e: any) {
     vite?.ssrFixStacktrace(e)
     console.log(e.stack)
     res.status(500).end(e.stack)
@@ -107,4 +130,4 @@ app.use('*all', async (req, res) => {
 // Start http server
 app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}`)
-})
+}) 
