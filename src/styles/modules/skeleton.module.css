@@ -1,5 +1,5 @@
 /* Main skeleton layout */
-.skeleton-main {
+.skeletonMain {
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-template-rows: auto 1fr auto;
@@ -16,10 +16,10 @@
 }
 
 /* Shared skeleton styles */
-.skeleton-navbar,
-.skeleton-sidebar,
-.skeleton-post,
-.skeleton-comments {
+.skeletonNavbar,
+.skeletonSidebar,
+.skeletonPost,
+.skeletonComments {
   background-color: #f0f0f0;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -30,7 +30,7 @@
 }
 
 /* Skeleton pulse animation */
-@keyframes skeleton-pulse {
+@keyframes skeletonPulse {
   0% {
     background-position: -200px 0;
   }
@@ -40,89 +40,98 @@
 }
 
 /* Generic skeleton element styles */
-.skeleton-title,
-.skeleton-link,
-.skeleton-menu-item,
-.skeleton-line,
-.skeleton-post-title,
-.skeleton-comment-author,
-.skeleton-comment-text,
-.skeleton-comments-title {
+.skeletonTitle,
+.skeletonLink,
+.skeletonMenuItem,
+.skeletonLine,
+.skeletonPostTitle,
+.skeletonCommentAuthor,
+.skeletonCommentText,
+.skeletonCommentsTitle {
   background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
   background-size: 200px 100%;
-  animation: skeleton-pulse 1.5s infinite;
+  animation: skeletonPulse 1.5s infinite;
   border-radius: 4px;
   margin-bottom: 10px;
 }
 
 /* NavBar skeleton */
-.skeleton-navbar {
+.skeletonNavbar {
   grid-area: nav;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.skeleton-title {
+.skeletonTitle {
   height: 24px;
   width: 120px;
 }
 
-.skeleton-links {
+.skeletonLinks {
   display: flex;
   gap: 15px;
 }
 
-.skeleton-link {
+.skeletonLink {
   height: 16px;
   width: 60px;
 }
 
 /* Sidebar skeleton */
-.skeleton-sidebar {
+.skeletonSidebar {
   grid-area: sidebar;
   width: 100%; /* Match exact width of sidebar in real layout */
 }
 
-.skeleton-menu-item {
+.skeletonMenu {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.skeletonMenuItem {
   height: 16px;
   margin-bottom: 15px;
   width: 85%; /* Match approximate width of sidebar menu items */
 }
 
 /* Post skeleton */
-.skeleton-post {
+.skeletonPost {
   grid-area: content;
 }
 
-.skeleton-post-title {
+.skeletonPostTitle {
   height: 28px;
   width: 70%;
   margin-bottom: 20px;
 }
 
-.skeleton-line {
+.skeletonPostContent {
+  width: 100%;
+}
+
+.skeletonLine {
   height: 16px;
   margin-bottom: 12px;
   width: 100%; /* Make lines full width to match paragraph text */
 }
 
-.skeleton-line:last-child {
+.skeletonLine:last-child {
   width: 80%;
 }
 
 /* Comments skeleton */
-.skeleton-comments {
+.skeletonComments {
   grid-area: comments;
 }
 
-.skeleton-comments-title {
+.skeletonCommentsTitle {
   height: 24px;
   width: 120px;
   margin-bottom: 20px;
 }
 
-.skeleton-comment {
+.skeletonComment {
   background-color: white;
   padding: 15px;
   border-radius: 8px;
@@ -131,18 +140,18 @@
   box-sizing: border-box;
 }
 
-.skeleton-comment-author {
+.skeletonCommentAuthor {
   height: 18px;
   width: 100px;
   margin-bottom: 10px;
 }
 
-.skeleton-comment-text {
+.skeletonCommentText {
   height: 16px;
   width: 100%;
 }
 
-.skeleton-comment-text:last-child {
+.skeletonCommentText:last-child {
   width: 70%;
   margin-bottom: 0;
 } 
