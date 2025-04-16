@@ -3,6 +3,8 @@ import express, { Request, Response } from 'express'
 import { Transform } from 'node:stream'
 import type { ViteDevServer } from 'vite'
 import type { RequestHandler } from 'express'
+import scriptNonceMiddleware from './server/middlewares/script-nonce.middleware'
+import helmet from 'helmet'
 import path from 'node:path'
 
 // For missing module declaration
@@ -38,6 +40,24 @@ const templateHtml = isProduction
 
 // Create http server
 const app = express()
+
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    "script-src": ["'self'", "'unsafe-inline'", "https://js.stripe.com", "https://x.klarnacdn.net", "https://c.paypal.com"],
+    "script-src-elem": ["'self'", "'unsafe-inline'", "https://js.stripe.com", "https://x.klarnacdn.net", "https://c.paypal.com"],
+    "style-src": ["'self'", "'unsafe-inline'"],
+    "img-src": ["'self'"],
+    "font-src": ["'self'"],
+    "object-src": ["'none'"],
+    "base-uri": ["'self'"],
+    "form-action": ["'self'"],
+    "frame-ancestors": ["'none'"],
+    "frame-src": ["'self'", "https://js.stripe.com"],
+    "connect-src": ["'self'", "'unsafe-inline'", "ws://localhost:*", "wss://localhost:*"],
+  },
+}))
+
+// app.use(scriptNonceMiddleware)
 
 // Add Vite or respective production middlewares
 let vite: ViteDevServer | undefined

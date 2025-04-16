@@ -10,6 +10,11 @@ import path from 'path'
 import fetch from 'node-fetch'
 import crypto from 'crypto'
 import { paymentSriConfig } from './sri-config'
+import { fileURLToPath } from 'url'
+
+// Get current directory in ES modules
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // 支持的哈希算法
 type HashAlgorithm = 'sha256' | 'sha384' | 'sha512'
@@ -115,8 +120,8 @@ async function main () {
     }
 }
 
-if (require.main === module) {
-    main()
+if (import.meta.url === `file://${process.argv[1]}`) {
+    main();
 }
 
 export {

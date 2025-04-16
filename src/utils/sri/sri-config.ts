@@ -2,7 +2,7 @@
  * @Author: BuXiongYu
  * @Date: 2025-04-15 16:28:16
  * @LastEditors: BuXiongYu
- * @LastEditTime: 2025-04-15 16:28:17
+ * @LastEditTime: 2025-04-16 09:59:19
  * @Description: 请填写简介
  */
 
@@ -20,7 +20,8 @@ import { ISriConfigMap } from "./utils";
 export const paymentSriConfig: ISriConfigMap = {
     // Stripe SDK
     'https://js.stripe.com/v3/': {
-      integrity: 'sha384-y3Hh3Kg3FcudzNN9IWD6l65JwjhX8dEwPN5lvVAzekG6GNYta/FiZNQhSQwrmlkN', // sha384-y3Hh3Kg3FcudzNN9IWD6l65JwjhX8dEwPN5lvVAzekG6GNYta/FiZNQhSQwrmlkN%
+       // 如果想验证对应的效果，可以将旁边的 hash 替换到下方，script 加载的时候会报错：sha384-y3Hh3Kg3FcudzNN9IWD6l65JwjhX8dEwPN5lvVAzekG6GNYta/FiZNQhSQwrmlkN%
+      integrity: 'sha384-3FCDFz+/xA0EtsS1y6g/M18kY6WWlzpzr5xgLPrXigwGfpeCw71ZfE7pGVoEAYEm',
       crossOrigin: 'anonymous',
       version: 'v3',
       strictCheck: false, // Stripe可能会定期更新，不要太严格
@@ -28,7 +29,7 @@ export const paymentSriConfig: ISriConfigMap = {
   
     // Klarna SDK
     'https://x.klarnacdn.net/kp/lib/v1/api.js': {
-      integrity: 'sha384-EkXAA+DCJcBBb5zS0ssBxvc/8IbBjSnoWHpdNZGhcLcdswn6nvHYYX9x9NfdFVgf',
+      integrity: 'sha384-cZ8/WwE08xf1j9MoIIazh0RAoyKc3I/Y1HqwhZiVuTQd00d3LtvSOD7C25oTpKuT',
       crossOrigin: 'anonymous',
       version: 'v1',
       strictCheck: false,
