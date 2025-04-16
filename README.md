@@ -2,13 +2,15 @@
  * @Author: BuXiongYu
  * @Date: 2025-04-16 22:56:47
  * @LastEditors: BuXiongYu
- * @LastEditTime: 2025-04-16 23:01:05
+ * @LastEditTime: 2025-04-16 23:09:13
  * @Description: 流式渲染 SSR with security config
 -->
 
 # 流式渲染 SSR with security config
 
-一个基于 React Suspense 的流式服务端渲染（SSR）项目，集成了安全配置（CSP、SRI）。
+- 一个基于 React Suspense 的流式服务端渲染（SSR）项目，集成了安全配置（CSP、SRI）。
+- 反正就是想随便做个 demo, 对于之前 dan 的文章可以做个简单的小实践 <https://github.com/reactwg/react-18/discussions/37#top>
+
 
 ## 特性
 
