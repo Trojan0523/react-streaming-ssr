@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express'
 import { Transform } from 'node:stream'
 import type { ViteDevServer } from 'vite'
 import type { RequestHandler } from 'express'
+import path from 'node:path'
 
 // For missing module declaration
 // This is needed to fix TypeScript warnings about missing module declarations
@@ -48,11 +49,25 @@ if (!isProduction) {
     base,
   })
   app.use(vite.middlewares)
+  // Serve files from public directory in development
+  app.use(express.static('public'))
 } else {
   const { default: compression } = await import('compression')
   const { default: sirv } = await import('sirv')
   app.use(compression() as RequestHandler)
   app.use(base, sirv('./dist/client', { extensions: [] }) as RequestHandler)
+  
+  // In production, copy the _react_streaming.js file to dist/client directory
+  const publicDir = path.resolve('./public')
+  const streamingJsPath = path.join(publicDir, '_react_streaming.js')
+  const distClientDir = path.resolve('./dist/client')
+  
+  try {
+    const streamingJsContent = await fs.readFile(streamingJsPath, 'utf-8')
+    await fs.writeFile(path.join(distClientDir, '_react_streaming.js'), streamingJsContent)
+  } catch (err) {
+    console.error('Error copying _react_streaming.js:', err)
+  }
 }
 
 // Serve HTML
