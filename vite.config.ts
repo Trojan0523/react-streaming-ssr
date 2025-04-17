@@ -1,8 +1,9 @@
+/// <reference types="vitest/config" />
 /*
  * @Author: BuXiongYu
  * @Date: 2025-04-15 08:11:42
  * @LastEditors: BuXiongYu
- * @LastEditTime: 2025-04-16 22:11:59
+ * @LastEditTime: 2025-04-17 11:52:07
  * @Description: 请填写简介
  */
 import { defineConfig } from 'vite'

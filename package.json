@@ -10,7 +10,9 @@
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
     "preview": "cross-env NODE_ENV=production tsx server.ts",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix"
+    "lint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
