@@ -43,17 +43,17 @@ const app = express()
 
 app.use(helmet.contentSecurityPolicy({
   directives: {
-    "script-src": ["'self'", "'unsafe-inline'", "https://js.stripe.com", "https://x.klarnacdn.net", "https://c.paypal.com"],
-    "script-src-elem": ["'self'", "'unsafe-inline'", "https://js.stripe.com", "https://x.klarnacdn.net", "https://c.paypal.com"],
-    "style-src": ["'self'", "'unsafe-inline'"],
-    "img-src": ["'self'"],
-    "font-src": ["'self'"],
-    "object-src": ["'none'"],
-    "base-uri": ["'self'"],
-    "form-action": ["'self'"],
-    "frame-ancestors": ["'none'"],
-    "frame-src": ["'self'", "https://js.stripe.com"],
-    "connect-src": ["'self'", "'unsafe-inline'", "ws://localhost:*", "wss://localhost:*"],
+    "script-src": ["'self'", "'unsafe-inline'", "https://js.stripe.com", "https://x.klarnacdn.net", "https://c.paypal.com"], // Controls which JavaScript sources can be executed. 
+    "script-src-elem": ["'self'", "'unsafe-inline'", "https://js.stripe.com", "https://x.klarnacdn.net", "https://c.paypal.com"], // Controls which script elements can be loaded. Has same allowances as script-src.
+    "style-src": ["'self'", "'unsafe-inline'"], // Controls where stylesheets can be loaded from. Allows styles from same origin and inline styles.
+    "img-src": ["'self'"], // Restricts image sources to only the same origin.
+    "font-src": ["'self'"], // Limits font loading to only the same origin.
+    "object-src": ["'none'"], // Blocks all plugin content (Flash, Java applets, etc.) with 'none'. 不重要
+    "base-uri": ["'self'"], // Restricts the base URI that can be used in the document to same origin.
+    "form-action": ["'self'"], // Controls where forms can submit data to, limiting to same origin.
+    "frame-ancestors": ["'none'"], // Prevents the page from being embedded in frames on other sites.
+    "frame-src": ["'self'", "https://js.stripe.com"], // Controls which URLs can be loaded in frames, allowing only same origin and Stripe.
+    "connect-src": ["'self'", "'unsafe-inline'", "ws://localhost:*", "wss://localhost:*"], // Restricts URLs for fetch, WebSocket, and XMLHttpRequest, allowing same origin, inline connections, and WebSocket connections to localhost.
   },
 }))
 

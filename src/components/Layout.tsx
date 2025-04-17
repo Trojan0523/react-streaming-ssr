@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useDeferredValue } from 'react';
 import NavBar from './NavBar';
 import Sidebar from './Sidebar';
 import Post from './Post';
