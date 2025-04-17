@@ -46,7 +46,7 @@ app.use(helmet.contentSecurityPolicy({
     "script-src": ["'self'", "'unsafe-inline'", "https://js.stripe.com", "https://x.klarnacdn.net", "https://c.paypal.com"], // Controls which JavaScript sources can be executed. 
     "script-src-elem": ["'self'", "'unsafe-inline'", "https://js.stripe.com", "https://x.klarnacdn.net", "https://c.paypal.com"], // Controls which script elements can be loaded. Has same allowances as script-src.
     "style-src": ["'self'", "'unsafe-inline'"], // Controls where stylesheets can be loaded from. Allows styles from same origin and inline styles.
-    "img-src": ["'*'"], // Restricts image sources to only the same origin.
+    // "img-src": ["'*'"], // Restricts image sources to only the same origin.
     "font-src": ["'self'"], // Limits font loading to only the same origin.
     "object-src": ["'none'"], // Blocks all plugin content (Flash, Java applets, etc.) with 'none'. 不重要
     "base-uri": ["'self'"], // Restricts the base URI that can be used in the document to same origin.

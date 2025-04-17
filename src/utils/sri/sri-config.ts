@@ -21,7 +21,7 @@ export const paymentSriConfig: ISriConfigMap = {
     // Stripe SDK
     'https://js.stripe.com/v3/': {
        // 如果想验证对应的效果，可以将旁边的 hash 替换到下方，script 加载的时候会报错：sha384-y3Hh3Kg3FcudzNN9IWD6l65JwjhX8dEwPN5lvVAzekG6GNYta/FiZNQhSQwrmlkN%
-      integrity: 'sha384-3FCDFz+/xA0EtsS1y6g/M18kY6WWlzpzr5xgLPrXigwGfpeCw71ZfE7pGVoEAYEm',
+      integrity: 'sha384-08eAvPsvKgxHtH8Af1RoaIY5jH2p0moh47zPwDKnjaRPP+/+wG2U/kL9g1SLdhDx',
       crossOrigin: 'anonymous',
       version: 'v3',
       strictCheck: false, // Stripe可能会定期更新，不要太严格
